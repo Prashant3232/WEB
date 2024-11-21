@@ -1,0 +1,67 @@
+<!-- from mongoengine import connect
+
+class Mongodb:
+
+    def __init__(self, database, collection):
+        self.connection = connect(host='localhost', port=27017)
+        self.db = self.connection[database]
+        self.collection = self.db[collection]
+
+    def insert(self,doc):
+        if doc:
+            try:
+                self.collection.insert_one(doc)
+                return True
+            except Exception as e:
+                return False
+        else:
+            return False
+
+    def update(self,filter, parameter):
+        if filter and parameter:
+            try:
+                print(self.collection.update_one(filter,{"$set":parameter}))
+                return True
+            except Exception as e:
+                return False
+        else:
+            return False
+
+    def find_doc(self, filter):
+        return self.collection.find(filter)
+
+    def delete(self, filter):
+        self.collection.delete_many(filter)
+
+import datetime
+class Todo:
+
+    def __init__(self, title, description, is_completed, due_date=None):
+        self.title = title
+        self.description = description
+        self.is_completed = is_completed
+        self.due_date = due_date if due_date else datetime.datetime.now()
+        self.mongo_obj = Mongodb('SampleTodo', 'Todo')
+
+    def insert_task(self):
+        doc = {
+            "title": self.title,
+            "description": self.description,
+            "is_completed": self.is_completed,
+            "self.due_date": self.due_date
+        }
+        self.mongo_obj.insert(doc)
+        return True
+
+    def list_all_uncomplted_tasks(self):
+        res =  self.mongo_obj.find_doc({"is_completed":0})
+        for r in res:
+            print(r)
+
+    def update_task(self, filter, parameter):
+        self.mongo_obj.update(filter, parameter)
+        return True
+
+    def delete_all_completed_task(self):
+        self.mongo_obj.delete({"is_completed":1})
+ -->
